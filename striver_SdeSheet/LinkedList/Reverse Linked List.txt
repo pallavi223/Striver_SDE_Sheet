@@ -1,16 +1,45 @@
 
+Approach1 ::    Reverse Linked List: Iterative
 
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
    LinkedListNode<int>* curr = head;
     LinkedListNode<int>* prev = NULL;
     LinkedListNode<int>* forward = NULL;
-    
+    //list is empty or list has only one element
+    if(head == NULL)
+        return NULL;
+    if(head->next == NULL)
+        return head;
     while(curr != NULL){
         forward = curr->next;
         curr->next = prev;
         prev = curr;
         curr = forward;
     }
+      head = prev;
     return prev;
+    
+}
+
+
+Approach2:   Using Recursion
+
+We traverse to the end of the list recursively.
+As we reach the end of the list, we make the end node the head. Then receive previous nodes and make them connected to the last one.
+At last, we link the second node to the head and the first node to NULL. We return to our new head.
+
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
+{
+    //base case
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    
+   
+    LinkedListNode<int> *reversedNodes = reverseLinkedList(head->next);
+     head->next->next = head;
+    head->next = NULL;
+    return reversedNodes;
+    
 }
