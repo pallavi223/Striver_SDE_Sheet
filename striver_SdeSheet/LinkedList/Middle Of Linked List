@@ -1,0 +1,67 @@
+
+******************** Approach1: we need to traverse half time once and full time once in this sol T(C) - O(N)
+int getLength(Node* head){
+   
+    int len = 0;
+    while(head != NULL){
+        len++;
+        head = head->next;
+    }
+    return len;
+}
+Node *findMiddle(Node *head) {
+    int len = getLength(head);
+   int mid = (len)/2;
+    Node* temp = head;
+    int cnt=0;
+    while(cnt<mid){    //we need to traverse half time
+        temp = temp->next;
+        cnt++;
+    }
+    return temp;
+}
+
+
+Approach2: 
+
+class Solution {
+public:
+	ListNode* middleNode(ListNode* head) {
+    	int n = 0;
+    	ListNode* temp = head;
+    	while(temp) {
+        	n++;
+        		temp = temp->next;
+    	}
+   	 
+    	temp = head;
+   	 
+    	for(int i = 0; i < n / 2; i++) {
+        		temp = temp->next;
+    	}
+   	 
+    	return temp;
+	}
+};
+
+
+
+*********************** Approach3:  Using fast and slow pointers   [Efficient] Tortoise-Hare-Approach
+
+Intuition: In the Tortoise-Hare approach, we increment slow ptr by 1 and fast ptr by 2, 
+so if take a close look fast ptr will travel double than that of the slow pointer. So when the fast ptr will be at the end of Linked List,
+slow ptr would have covered half of Linked List till then. So slow ptr will be pointing towards the middle of Linked List.
+
+
+Node *findMiddle(Node *head) {
+    if(head == NULL || head->next == NULL)
+        return head;
+   Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast -> next != NULL){
+            slow = slow->next;
+             fast = fast->next->next;
+       
+    }
+    return slow;
+}
