@@ -1,0 +1,80 @@
+
+1. Approach -- T(C) : O(N) , S(C) : O(N)    extra space taken
+
+bool isPalindrome(LinkedListNode<int> *head) {
+    vector<int> arr;
+    LinkedListNode<int>* temp = head;
+    while(temp != NULL){
+        arr.push_back(temp->data);
+        temp = temp->next;
+    }
+    int start = 0;
+    int end = arr.size()-1;
+    while(start< end){
+        if(arr[start++] != arr[end--]){
+            return false;
+        }
+    }
+    return true;
+
+}
+
+
+Approach2 :
+
+class Solution {
+    ListNode* getMiddle(ListNode* &head){
+    ListNode* fast = head->next;
+    ListNode* slow = head;
+    while(fast != NULL && fast ->next !=NULL){
+        fast = fast->next;
+        if(fast != NULL){
+            fast = fast->next;
+        }
+        slow = slow->next;
+    }
+    return slow;
+}
+ListNode* reverse(ListNode* &head){
+   ListNode* curr = head;
+   ListNode* prev = NULL;
+   ListNode* forward = NULL;
+    while(curr != NULL){
+        forward = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = forward;
+    }
+    return prev;
+}
+public:
+    bool isPalindrome(ListNode* head) {
+        if(head == NULL)
+        return true;
+        if(head->next == NULL )
+        return true;
+   
+  //setp1: find mid of the ll
+    ListNode* mid = getMiddle(head);
+    if(mid == NULL){
+        return NULL;
+    }
+    ListNode* temp = mid->next;
+    mid->next = reverse(temp);
+    ListNode* head1 = head;
+    ListNode* head2 = mid->next;
+     while(head2 != NULL){
+         if(head2->val != head1->val){
+             return false;
+         }
+         head1 = head1->next;
+         head2 = head2->next;
+     }
+
+    return true;
+    }
+};
+
+
+
+
