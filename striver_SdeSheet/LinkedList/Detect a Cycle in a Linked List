@@ -1,23 +1,21 @@
 Approcah1: Brute force   --> using map take extra space T(C) - O(N) , S(C) - O(N)
-bool detectCycle(Node *head)
-{
-    if(!head)
-        return false;
-	unordered_map<Node*, bool> visited;
- 
-    while(head){
-        //if not present in map 
-        if(!visited[head]){
-            //than put in map and increment head
-            visited[head] = false;
-             head = head->next;
-        }else{
-            return true;
-        }
-      
+ bool detectLoop(Node* head)
+    {
+        if(!head)
+            return false;
+        
+      unordered_map<Node*, int> visited;
+      while(head){
+          if(!visited[head]){
+              visited[head] = 1;
+              head = head->next;
+          }
+          else
+              return true;
+          
+      }
+      return false;
     }
-        return false;
-}
 
 
 
