@@ -1,0 +1,32 @@
+Detect loop and find the starting node of the loop
+
+
+
+Node* floydCycleDetection(Node* &head){
+    Node* fast = head;
+    Node* slow = head;
+    if(head == NULL )
+        return NULL;
+    while(fast != NULL && fast->next != NULL){
+        fast = fast->next->next;
+        slow = slow->next;
+        if(slow == fast){
+            return slow;
+        }
+    }
+    return NULL;
+}
+Node *firstNode(Node *head)
+{
+     if(head == NULL )
+        return NULL;
+    Node* slow = head;
+	Node* intersection = floydCycleDetection(head);
+    if(intersection == NULL){
+        return NULL;
+    }
+    while(slow != intersection){
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    retu
