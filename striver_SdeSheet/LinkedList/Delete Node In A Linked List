@@ -1,0 +1,25 @@
+input:
+1
+2 5 7 10 -1
+7
+
+Sample Output 1:
+2 5 10 -1
+
+
+1. It is given that-- head is not given you are only given node which you need to delete in (question) and 
+you don't have of access of first node (like head was not given)
+so there is point like what uf only one node is present and you need to delete that also --> 
+                                               no (in ques it is mention that you are not asked to delete last(tail) node
+******************************* You need to do it in O(1) times 
+ 
+ 
+void deleteNode(LinkedListNode<int> * node) {
+    LinkedListNode<int> *temp = node->next;
+    
+    //swap values of temp and node
+   node->data = node->next->data;
+    node->next = node->next->next;
+    temp->next = NULL;
+    
+}
