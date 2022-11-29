@@ -1,0 +1,74 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+
+       int zeroCount=0;
+       int oneCount=0;
+       int twoCount=0;
+       
+       for(int i=0;i<nums.size();i++){
+           if(nums[i] == 0){
+               zeroCount++;
+           }
+           else if(nums[i] == 1){
+               oneCount++;
+           }
+           else if(nums[i] == 2){
+               twoCount++;
+           }
+       }
+       //traverse and replace data
+       for(int i=0;i<nums.size();i++){
+           if(zeroCount != 0){
+               nums[i] = 0;
+               zeroCount--;
+           }
+           else if(oneCount != 0){
+               nums[i] = 1;
+               oneCount--;
+           }
+            else if(twoCount != 0){
+                nums[i] = 2;
+                twoCount--;
+            }
+       }
+      
+        
+    
+    }
+};
+
+
+
+##################### approach -- > 3pointer 
+########### variation of dutch National Flag Algo
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int lo = 0; 
+        int hi = nums.size() - 1; 
+        int mid = 0; 
+
+        while (mid <= hi) { 
+            switch (nums[mid]) { 
+
+            // If the element is 0 
+            case 0: 
+                swap(nums[lo++], nums[mid++]); 
+                break; 
+
+            // If the element is 1 . 
+            case 1: 
+                mid++; 
+                break; 
+
+            // If the element is 2 
+            case 2: 
+                swap(nums[mid], nums[hi--]); 
+                break; 
+            }
+        }
+         
+    }
+};
