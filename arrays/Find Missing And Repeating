@@ -55,3 +55,9 @@ S(C) - O(1)
           v[1] = b;
           return v;
     }
+    
+    
+Q - what if  we are not allowed to modify the array element  ??
+
+Then make a temporary array and initialise it with zeroes,traverse the array mark the visited values as negative or one in temporary array...if we got already marked index in temporary array than it is repeating element,
+now after this traverse the array and check if there is any index left with value zero than that will be missing element....t.c.-o(n)...but s.c.-o(n)
