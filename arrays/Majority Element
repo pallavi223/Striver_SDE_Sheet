@@ -1,0 +1,35 @@
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+
+Input: nums = [3,2,3]
+Output: 3
+
+############################### Solution
+    int majorityElement(vector<int>& nums) {
+       // After you sort the array, the middle element will always be the majority.
+        sort(nums.begin(), nums.end());
+        return nums[nums.size()/2];
+    }
+};
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+     int count =0;
+     int candidate = 0;
+     for(int i: nums){
+         if(count ==0){
+             candidate= i;
+         }
+         if(i==candidate){
+             count += 1;
+         }
+         else{
+            count -= 1;
+         }
+     }
+return candidate;
+    }
+};
